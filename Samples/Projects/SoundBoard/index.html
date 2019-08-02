@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shape&Sound</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script type="text/javascript" src="assets/js/paper.js"></script>
+	<script type="text/javascript" src="assets/js/howler.js"></script>	
+	<script type="text/javascript" src="assets/js/data.js"></script>
+
+	<script type="text/paperscript" canvas="myCanvas">
+		
+
+
+		var shapes = [];
+
+		function onKeyDown(event){
+			
+			if(keyData[event.key]) {
+				var max = new Point(view.size.width, view.size.height);
+				var randPoint = Point.random();
+				var point = max * randPoint;
+			
+				var newShape = new Path.Circle(point, 400);
+				newShape.fillColor = keyData[event.key].color;
+				keyData[event.key].sound.play();
+				shapes.push(newShape);
+			}
+		};
+
+		function onFrame(event) {
+			for(var i = 0; i < shapes.length; i++) {
+				shapes[i].fillColor.hue += 1;
+				shapes[i].scale(0.92);
+
+				if(shapes[i].area < 1) {
+					shapes[i].remove();
+					shapes.splice(i, 1);
+				}
+			}
+		};
+	</script>
+
+</head>
+<body>
+
+<canvas id="myCanvas"></canvas>
+</body>
+</html>
