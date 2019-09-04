@@ -29,7 +29,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     
     // Edit display (todo: change to function)
     dice.style.display = 'block';
-    dice.src = 'assets/imgs/dice-' + diceRoll + '.png';
+    dice.src = 'imgs/dice-' + diceRoll + '.png';
     dice.textContent = diceRoll;
     
     if(!isOne(diceRoll)) {
